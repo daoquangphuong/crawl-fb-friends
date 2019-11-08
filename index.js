@@ -17,9 +17,9 @@ const request = requestPromise.defaults({
     jar: jar
 });
 
-const getFriends = async () => {
+const getFriends = async (id) => {
     const {body} = await request({
-        url: 'https://www.facebook.com/hanhzit1202',
+        url: `https://www.facebook.com/${id}`,
     });
     // const fs = require('fs');
     // const path = require('path');
@@ -33,4 +33,4 @@ const getFriends = async () => {
     return res;
 };
 
-getFriends().then(console.log, console.log);
+getFriends('daoquang.phuong').then(console.log, console.log);
