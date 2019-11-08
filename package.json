@@ -1,0 +1,14 @@
+{
+  "name": "crawl-fb-friends",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
