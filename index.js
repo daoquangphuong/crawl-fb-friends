@@ -84,7 +84,7 @@ const getNextFriends = async ({userId, token, collection, profile, pageLet} = {}
     }
 };
 
-const getFriends = async (id, maxPage = 10) => {
+const getFriends = async (id, {maxPage = 10} = {}) => {
     const {body} = await request({
         url: `https://www.facebook.com/${id}/friends`,
     });
@@ -129,4 +129,4 @@ const getFriends = async (id, maxPage = 10) => {
     return list;
 };
 
-getFriends('daoquang.phuong').then(console.log, console.log);
+getFriends('daoquang.phuong', {maxPage: 5}).then(console.log, console.log);
