@@ -76,7 +76,7 @@ const getNextFriends = async ({userId, token, collection, profile, pageLet} = {}
     const res = parseFriends(`<body><code>${json.payload}</code></body>`);
 
     const abc = json.jsmods.require.find(i => i && i[0] === 'TimelineAppCollection' && i[1] === 'enableContentLoader');
-    const next = abc[3][2];
+    const next = abc && abc[3] && abc[3][2];
 
     return {
         list: res,
@@ -92,6 +92,10 @@ const getFriends = async (id, {maxPage = 1} = {}) => {
     // const path = require('path');
     // fs.writeFileSync(path.resolve(__dirname, 'test.html'), body, 'utf8');
 
+    const hasAllFriends = body.indexOf('name="All Friends"') > -1;
+    if(!hasAllFriends){
+        return [];
+    }
     const nameMatch = body.match(/<title id="pageTitle">(.*?)<\/title>/);
     const userIdMatch = body.match(/"USER_ID":"(.*?)"/);
     const tokenMatch = body.match(/async_get_token":"(.*?)"/);
@@ -102,6 +106,9 @@ const getFriends = async (id, {maxPage = 1} = {}) => {
     const name = nameMatch[1];
     const userId = userIdMatch[1];
     const token = tokenMatch[1];
+    if(!collectionMatch){
+        return [];
+    }
     const collection = collectionMatch[1];
     const profile = profileMatch[1];
     const pageLet = pageLetMatch[1];
