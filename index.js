@@ -84,7 +84,7 @@ const getNextFriends = async ({userId, token, collection, profile, pageLet} = {}
     }
 };
 
-const getFriends = async (id, {maxPage = 10} = {}) => {
+const getFriends = async (id, {maxPage = 1} = {}) => {
     const {body} = await request({
         url: `https://www.facebook.com/${id}/friends`,
     });
